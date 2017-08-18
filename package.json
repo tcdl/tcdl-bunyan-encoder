@@ -1,0 +1,27 @@
+{
+  "name": "bunyan-encoder",
+  "version": "0.1.0",
+  "description": "A decorator for a bunyan stream which performs encoding of bunyan raw JSON structure before writing it to the stream.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tcdl/bunyan-encoder.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tcdl/bunyan-encoder/issues"
+  },
+  "homepage": "https://github.com/tcdl/bunyan-encoder#readme",
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "mocha": "^3.5.0",
+    "sinon": "^3.2.1"
+  },
+  "dependencies": {
+    "lodash.clone": "^4.5.0"
+  }
+}
