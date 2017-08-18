@@ -4,11 +4,16 @@ const {assert} = require('chai');
 
 describe('bunyan-encoder', () => {
 
-  let stream;
+  const stream = {write: () => {}};
+  let sandbox;
 
   beforeEach(() => {
-    stream = {write: () => {}};
-    sinon.spy(stream, 'write');
+    sandbox = sinon.sandbox.create();
+    sandbox.spy(stream, 'write');
+  });
+
+  afterEach(() => {
+    sandbox.restore();
   });
 
   it('should write encoded message to given stream', () => {
@@ -19,6 +24,17 @@ describe('bunyan-encoder', () => {
     encoder.write({v: '1', time: timestamp, msg: 'event happened', sessionId: '123'});
     //then
     assert.isTrue(stream.write.calledOnce);
-    assert.deepEqual(stream.write.firstCall.args[0], {'@timestamp': timestamp, message: 'event happened', sessionId: '123'});
+    assert.isString(stream.write.firstCall.args[0]);
+    assert.deepEqual(JSON.parse(stream.write.firstCall.args[0]), {'@timestamp': timestamp, message: 'event happened', sessionId: '123'});
+  });
+
+  it('should write to stdout stream if no stream specified', () => {
+    //given
+    sandbox.stub(process.stdout, 'write');
+    const encoder = bunyanEncoder({msg: 'message'});
+    //when
+    encoder.write({msg: 'event happened'});
+    //then
+    assert.isTrue(process.stdout.write.calledOnce);
   });
 });
