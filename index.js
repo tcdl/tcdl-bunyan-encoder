@@ -6,7 +6,7 @@ module.exports = function bunyanEncoder(mapCoreFields = defaultMap, stream = pro
   return {
     write: function (rec) {
       if (typeof(rec) === 'string' || (rec instanceof String)) {
-        throw new Error('The stream must be of raw type');
+        throw new Error('Stream must be of raw type');
       }
 
       const recCopy = JSON.parse(JSON.stringify(rec));
