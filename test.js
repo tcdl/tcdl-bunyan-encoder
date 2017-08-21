@@ -15,7 +15,7 @@ describe('bunyan-encoder', () => {
     sandbox.restore();
   });
 
-  it('should write message encoded with default layout to stdout', () => {
+  it('should write message to stdout mapped with default strategy', () => {
     //given
     const encoder = bunyanEncoder();
     //when
@@ -26,9 +26,9 @@ describe('bunyan-encoder', () => {
     assert.deepEqual(JSON.parse(process.stdout.write.firstCall.args[0]), {application: 'nice-microservice', logLevel: 'info', '@timestamp': '2017-08-21T09:37:02.567Z', message: 'event happened', sessionId: '123'});
   });
 
-  it('should write message encoded with defined layout', () => {
+  it('should write message to stdout mapped with defined strategy', () => {
     //given
-    const encoder = bunyanEncoder({time: 'customTime', msg: 'customMsg'});
+    const encoder = bunyanEncoder(rec => ({customTime: rec.time, customMsg: rec.msg, level: rec.level}));
     //when
     encoder.write({v: '1', time: '2017-08-21T09:37:02.567Z', msg: 'event happened', sessionId: '123'});
     //then
@@ -36,10 +36,10 @@ describe('bunyan-encoder', () => {
     assert.deepEqual(JSON.parse(process.stdout.write.firstCall.args[0]), {customTime: '2017-08-21T09:37:02.567Z', customMsg: 'event happened', sessionId: '123'});
   });
 
-  it('should write encoded message to a defined stream', () => {
+  it('should write message to a defined stream', () => {
     //given
     const stream = {write: sinon.spy()};
-    const encoder = bunyanEncoder({msg: 'message'}, stream);
+    const encoder = bunyanEncoder(rec => ({message: rec.msg}), stream);
     //when
     encoder.write({msg: 'event happened'});
     //then
