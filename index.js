@@ -17,7 +17,7 @@ module.exports = function bunyanEncoder(mapCoreFields = defaultMap, stream = pro
 
       Object.assign(recCopy, mappedCoreFields);
 
-      stream.write(JSON.stringify(recCopy));
+      stream.write(JSON.stringify(recCopy) + '\n');
     }
   };
 };

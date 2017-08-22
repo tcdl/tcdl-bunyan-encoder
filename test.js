@@ -39,6 +39,7 @@ describe('bunyan-encoder', () => {
       message: 'event happened',
       sessionId: '123'
     });
+    assert.isTrue(process.stdout.write.firstCall.args[0].endsWith('\n'));
   });
 
   it('should write message to stdout mapped with defined strategy', () => {
