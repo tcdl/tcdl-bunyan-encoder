@@ -46,7 +46,7 @@ It is possible to override the default mapping of the core fields by providing a
 ```js
 bunyanEncoder(rec => {
   return {
-    log_level: rec.level,
+    severity: rec.level,
     event: rec.msg,
     time: rec.time,
     // ...

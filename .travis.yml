@@ -1,0 +1,12 @@
+language: node_js
+node_js:
+- '7'
+deploy:
+  provider: npm
+  email: integration-dev@thomascookonline.com
+  api_key:
+    secure: t45XeKFIiYOZsQL2czRaaqW5/lib1W+aZliZeW+Nnstv/x1RvGSB68JibSka1g/kbtBylJyhW2ypCo+bkbf2zbDLSgBoG/jQHRiNOtkjNMlG/z+YMIE+EO97jMqjH9Zm2sZUK4KAKqYsd5tZP3RUp96YciEdDGuFVKJKOD9NU6KKK7khsn9lxEITcs+OhDuCSYooDdk78DorczeLdJf8pQS7Dk2A3mysfdfwMqlrNJbyQCogkO305qE02oE1jEmEiH+yW4KmJ2VsX5RB1e0QQ47xIAlAVidna6f4rz+VGXp+rEg5n6OiTgPLl1jRtgs76Lr4wH6PvikERWRewT0nY8A3+2rHLX5nrYmrTysoQ+XKlahL3WK8j3kX8SC/+aEtiDvPDeBZj3cL2fPob71wrXPHn1fn2O85omsxqbe+ogt2yidcDwzRY+Yl7iJFTIoE9kXBJFjV13B73JfI2mJWZ99NfZQdlHBXUJ1jBmMq7OkeDsaQI0copDi9Z8qEhw3bOUdA/AFZKr8BAjDHAIxWTV3p1/Sqv2rQ6f7U7PP8EjNDuhth26AgEGzGCesO3pSV9NrbO81uOK0igZMVQIs5NzRnHeBIlzkDjydcw1OYu+DULOYcB6OM5aoYYfgptFftVEWMqGOIAjUKyUp1MEVJXGbN+ChJE6isoRngpC7JzTU=
+  on:
+    tags: true
+    repo: tcdl/bunyan-encoder
+    node: '7'
