@@ -34,8 +34,8 @@ describe('bunyan-encoder', () => {
     assert.isString(process.stdout.write.firstCall.args[0]);
     assert.deepEqual(JSON.parse(process.stdout.write.firstCall.args[0]), {
       application: 'nice-microservice',
-      logLevel: 'info',
-      '@timestamp': '2017-08-21T09:37:02.567Z',
+      logLevel: 'INFO',
+      timestamp: '2017-08-21T09:37:02.567Z',
       message: 'event happened',
       sessionId: '123'
     });

@@ -1,17 +1,17 @@
 const logLevelMapping = {
-  '10': 'trace',
-  '20': 'debug',
-  '30': 'info',
-  '40': 'warn',
-  '50': 'error',
-  '60': 'error'
+  '10': 'TRACE',
+  '20': 'DEBUG',
+  '30': 'INFO',
+  '40': 'WARN',
+  '50': 'ERROR',
+  '60': 'ERROR'
 };
 
 module.exports = function mapCoreFields(rec) {
   return {
     logLevel: logLevelMapping[rec.level],
     application: rec.name,
-    '@timestamp': rec.time,
+    timestamp: rec.time,
     message: rec.msg
   }
 };
