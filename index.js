@@ -18,13 +18,12 @@ module.exports = function bunyanEncoder(mapCoreFields = defaultMap, stream = pro
         throw new Error('Stream must be raw');
       }
 
-      const recCopy = JSON.parse(JSON.stringify(rec));
-      const mappedCoreFields = mapCoreFields(recCopy);
+      const mappedCoreFields = mapCoreFields(rec);
 
-      coreFields.forEach(field => recCopy[field] = undefined);
-      Object.assign(recCopy, mappedCoreFields);
+      coreFields.forEach(field => rec[field] = undefined);
+      Object.assign(rec, mappedCoreFields);
 
-      stream.write(JSON.stringify(recCopy) + '\n');
+      stream.write(JSON.stringify(rec) + '\n');
     }
   };
 };
